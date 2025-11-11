@@ -243,10 +243,12 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            position: relative;
         }
 
         .mega-menu li {
             margin-bottom: 0.5rem;
+            position: relative;
         }
 
         .mega-menu a {
@@ -262,21 +264,73 @@
             color: #111827;
         }
 
+        /* Nested Submenu Styles */
+        .mega-menu ul ul {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 101;
+            border: 1px solid #e5e7eb;
+        }
+
+        .mega-menu li.has-submenu:hover>ul {
+            display: block;
+        }
+
+        .mega-menu ul ul ul {
+            left: 100%;
+            top: 0;
+            width: 180px;
+        }
+
+        .mega-menu ul ul li {
+            margin-bottom: 0.25rem;
+        }
+
+        .mega-menu ul ul a {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            color: #6b7280;
+        }
+
+        .mega-menu ul ul a:hover {
+            color: #111827;
+        }
+
         .mega-menu-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 2rem;
+            /* Reduced gap for better width balance */
             align-items: start;
             padding: 2rem 1rem;
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+            /* Ensure full width utilization */
+            box-sizing: border-box;
         }
 
         @media (max-width: 768px) {
             .mega-menu-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1rem;
+                /* Further reduce on mobile */
                 padding: 1rem;
+            }
+
+            .mega-menu ul ul {
+                position: static;
+                display: block;
+                width: auto;
+                box-shadow: none;
+                border: none;
+                padding-left: 1rem;
             }
         }
     </style>
@@ -292,8 +346,43 @@
                     <div class="text-2xl font-serif font-bold tracking-widest"><img src="images/logo.png"
                             class="h-10 invert brightness-0" /></div>
                     <ul class="hidden lg:flex gap-6 text-sm">
-                        <li><a href="#" class="hover:opacity-70 transition">MEDICAL NUTRITION MEALS</a></li>
-                        <li><a href="#" class="hover:opacity-70 transition">IN-FLIGHT MEALS</a></li>
+                        <li><a href="#" class="hover:opacity-70 transition">MEDICAL NUTRITION MEALS</a>
+                        </li>
+                        <li class="nav-item relative"><a href="#" class="hover:opacity-70 transition ">IN-FLIGHT
+                                MEALS</a>
+                            <div class="mega-menu">
+                                <div class="mega-menu-content">
+                                    <div>
+                                        <ul>
+                                            <li><a href="#">Монгол Цэ</a></li>
+                                            <li class="has-submenu"><a href="#">Bussines class:</a>
+                                                <ul>
+                                                    <li class="has-submenu"><a href="#">Breakfast</a>
+                                                        <ul class="submenu2">
+                                                            <li><a href="#">Continental</a></li>
+                                                            <li><a href="#">Full English</a></li>
+                                                            <li><a href="#">Asian Style</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Meal</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Economy class</a></li>
+                                            <li><a href="#">Salad</a></li>
+                                            <li><a href="#">Dessert</a></li>
+                                            <li><a href="#">Child meal</a></li>
+                                            <li><a href="#">Vegan</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- <div class="text-center">
+                                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3133?w=400&q=80"
+                                            alt="Plates for elevated plating" class="mx-auto mb-4 rounded shadow-md">
+                                        <button
+                                            class="px-6 py-2 bg-gray-800 text-white hover:bg-gray-700 transition-colors text-sm font-medium">EXPLORE</button>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </li>
                         <li><a href="#" class="hover:opacity-70 transition">CATERING</a></li>
                         <li><a href="#" class="hover:opacity-70 transition">COFFEE SHOP</a></li>
                         <!-- Added Investor Relations with Mega Menu like attached image -->
@@ -338,7 +427,7 @@
     <!-- Mobile Menu -->
     <div id="mobileMenu">
         <i class="fas fa-times close-menu" id="closeMenu"></i>
-        <h3>MORE FROM CHURCHILL <i class="fas fa-chevron-down chevron"></i></h3>
+        <h3>MORE FROM ULEMJ <i class="fas fa-chevron-down chevron"></i></h3>
         <div class="menu-section">
             <h3><a href="#">ABOUT ULEMJ</a></h3>
         </div>
@@ -430,7 +519,7 @@
     <!-- About Section -->
     <section class="py-20 px-6">
         <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl md:text-4xl font-serif mb-8 relative inline-block section-title"> ABOUT CHURCHILL </h2>
+            <h2 class="text-3xl md:text-4xl font-serif mb-8 relative inline-block section-title"> ABOUT ULEMJ </h2>
             <p class="text-gray-700 leading-relaxed text-lg"> We design and make tableware for the professional, serving
                 hospitality markets globally. With over 225 years ceramic manufacturing experience our expertise is
                 committed to making sustainable products that last longer. </p>
@@ -438,7 +527,7 @@
     </section>
     <!-- Features Section -->
     <section class="py-16 px-6 bg-gray-50">
-        <div class="container mx-auto max-w-6xl">
+        <div class="container mx-auto max-width: 6xl">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Feature 1 -->
                 <div class="text-center">
@@ -500,12 +589,12 @@
                             EXPLORE </button>
                     </div>
                 </div>
-                <!-- Brand 2 - Churchill -->
+                <!-- Brand 2 - Ulemj -->
                 <div class="brand-card relative h-96 overflow-hidden cursor-pointer group">
-                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Churchill"
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Ulemj"
                         class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
-                        <div class="brand-logo text-3xl font-serif mb-1">CHURCHILL</div>
+                        <div class="brand-logo text-3xl font-serif mb-1">ULEMJ</div>
                         <p class="brand-subtitle text-xs mb-3 opacity-0 group-hover:opacity-100">super vitrified</p>
                         <p class="brand-description text-sm px-8 text-center mb-4">Premium quality tableware with
                             exceptional durability</p>
@@ -608,7 +697,7 @@
         </div>
     </section>
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-6">
+    <footer class="py-12 px-6">
         <div class="container mx-auto max-w-6xl">
             <!-- Social Media -->
             <div class="text-center mb-12">
@@ -620,61 +709,58 @@
                 </div>
             </div>
             <!-- Footer Links -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 <!-- Column 1 -->
                 <div>
                     <h4 class="text-sm font-semibold mb-4 tracking-wider">FIND OUT MORE</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition">Brochures</a></li>
-                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition">Showrooms & Events</a></li>
-                        <li><a href="#" class="hover:text-white transition">Decoration & Bespoke</a></li>
-                        <li><a href="#" class="hover:text-white transition">Customised Design</a></li>
-                        <li><a href="#" class="hover:text-white transition">Edge Chip Warranty</a></li>
-                        <li><a href="#" class="hover:text-white transition">Investor Relations</a></li>
-                        <li><a href="#" class="hover:text-white transition">Churchill Home</a></li>
+                        <li><a href="#" class="hover:text-black transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-black transition">Brochures</a></li>
+                        <li><a href="#" class="hover:text-black transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-black transition">Showrooms & Events</a></li>
+                        <li><a href="#" class="hover:text-black transition">Decoration & Bespoke</a></li>
+                        <li><a href="#" class="hover:text-black transition">Customised Design</a></li>
+                        <li><a href="#" class="hover:text-black transition">Edge Chip Warranty</a></li>
+                        <li><a href="#" class="hover:text-black transition">Investor Relations</a></li>
+                        <li><a href="#" class="hover:text-black transition">Ulemj Home</a></li>
                     </ul>
                 </div>
                 <!-- Column 2 -->
                 <div>
                     <h4 class="text-sm font-semibold mb-4 tracking-wider">OUR WEBSITE</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Website Terms of Use</a></li>
-                        <li><a href="#" class="hover:text-white transition">Privacy Statement</a></li>
-                        <li><a href="#" class="hover:text-white transition">Cookie Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition">CSR Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition">Modern Slavery Statement</a></li>
-                        <li><a href="#" class="hover:text-white transition">Gender Pay Gap</a></li>
-                        <li><a href="#" class="hover:text-white transition">Sitemap</a></li>
+                        <li><a href="#" class="hover:text-black transition">Website Terms of Use</a></li>
+                        <li><a href="#" class="hover:text-black transition">Privacy Statement</a></li>
+                        <li><a href="#" class="hover:text-black transition">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-black transition">CSR Policy</a></li>
+                        <li><a href="#" class="hover:text-black transition">Modern Slavery Statement</a></li>
+                        <li><a href="#" class="hover:text-black transition">Gender Pay Gap</a></li>
                     </ul>
                 </div>
                 <!-- Column 3 -->
                 <div>
                     <h4 class="text-sm font-semibold mb-4 tracking-wider">CONTACT US</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-white transition">How To Buy</a></li>
-                        <li><a href="#" class="hover:text-white transition">FAQs</a></li>
-                        <li><a href="#" class="hover:text-white transition">Subscribe</a></li>
-                        <li><a href="#" class="hover:text-white transition">Sample FAQ</a></li>
+                        <li><a href="#" class="hover:text-black transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-black transition">How To Buy</a></li>
+                        <li><a href="#" class="hover:text-black transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-black transition">Sample FAQ</a></li>
                     </ul>
                 </div>
                 <!-- Column 4 -->
-                <div>
+                <!-- <div>
                     <h4 class="text-sm font-semibold mb-4 tracking-wider">SIGN UP TODAY</h4>
                     <p class="text-sm text-gray-400 mb-4 leading-relaxed">Subscribe to our newsletter to be kept up to
                         date with exciting new product launches, news and inspiration.</p>
                     <button
-                        class="px-8 py-2 bg-white text-black text-sm hover:bg-gray-200 transition-all tracking-wider">
+                        class="px-8 py-2 bg-black text-white text-sm hover:bg-gray-500 transition-all tracking-wider">
                         SUBSCRIBE NOW </button>
-                </div>
+                </div> -->
             </div>
             <!-- Copyright -->
             <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center space-y-1">
-                <p>© 2025 Churchill China (UK) Ltd. All rights reserved.</p>
-                <p>Registered address: No.1 Marlborough Way, Tunstall, Stoke-On-Trent, ST6 5NZ, UK. Company number:
-                    00207513</p>
+                <p>© 2025 Ulemj. All rights reserved.</p>
+                <p>530-101, Khan Hills, Central office, Khan Uul district, Mongolia, Ulaanbaatar. Tel: 976-99775888</p>
             </div>
         </div>
     </footer>
