@@ -120,7 +120,7 @@
             left: -100%;
             width: 300px;
             height: 100vh;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255);
             color: black;
             transition: left 0.3s ease-in-out;
             z-index: 1000;
@@ -164,16 +164,22 @@
             opacity: 1;
         }
 
+        #mobileMenu .menu-tite {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
         #mobileMenu .menu-section {
-            margin-top: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 0.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             padding-bottom: 0.5rem;
         }
 
         #mobileMenu .menu-section h3 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
-            margin-bottom: 1rem;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -225,6 +231,7 @@
             top: 100%;
             left: 0;
             right: 0;
+            width: 200px;
             background-color: white;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             z-index: 100;
@@ -339,12 +346,12 @@
 
 <body class="overflow-x-hidden">
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-black/30 text-white transition-all duration-300">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300">
         <div class="container mx-auto px-6 lg:px-12 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-8">
                     <i class="fas fa-bars text-xl cursor-pointer hover:opacity-70 mobile-hamburger" id="hamburger"></i>
-                    <div class="text-2xl font-serif font-bold tracking-widest"><img src="images/logo.png"
+                    <div class="text-2xl font-serif font-bold tracking-widest"><img id="logo" src="images/logo.png"
                             class="h-10 invert brightness-0" /></div>
                     <ul class="hidden lg:flex gap-6 text-sm">
                         <li><a href="#" class="hover:opacity-70 transition">MEDICAL NUTRITION MEALS</a>
@@ -414,21 +421,23 @@
                         <li><a href="#" class="hover:opacity-70 transition">TECHNICAL EQUIPMENT</a></li>
                     </ul>
                 </div>
-                <div class="flex items-center gap-6 text-lg">
+                <!-- <div class="flex items-center gap-6 text-lg">
                     <i class="fas fa-search cursor-pointer hover:opacity-70 transition"></i>
                     <i class="far fa-heart cursor-pointer hover:opacity-70 transition"></i>
                     <i class="far fa-user cursor-pointer hover:opacity-70 transition"></i>
                     <i class="fas fa-book cursor-pointer hover:opacity-70 transition"></i>
                     <i class="fas fa-shopping-cart cursor-pointer hover:opacity-70 transition"></i>
                     <i class="fas fa-globe cursor-pointer hover:opacity-70 transition"></i>
-                </div>
+                </div> -->
             </div>
         </div>
     </nav>
     <!-- Mobile Menu -->
     <div id="mobileMenu">
         <i class="fas fa-times close-menu" id="closeMenu"></i>
-        <h3>MORE FROM ULEMJ <i class="fas fa-chevron-down chevron"></i></h3>
+        <div class="menu-tite">
+            <h3>MORE FROM ULEMJ</h3>
+        </div>
         <div class="menu-section">
             <h3><a href="#">ABOUT ULEMJ</a></h3>
         </div>
@@ -892,12 +901,13 @@
         // Navbar scroll effect
         window.addEventListener('scroll', function () {
             const navbar = document.getElementById('navbar');
+            const logo = document.getElementById('logo');
             if (window.scrollY > 100) {
-                navbar.classList.add('bg-black/90');
-                navbar.classList.remove('bg-black/30');
+                navbar.classList.add('bg-white', 'text-black');
+                logo.classList.remove('invert', 'brightness-0');
             } else {
-                navbar.classList.add('bg-black/30');
-                navbar.classList.remove('bg-black/90');
+                navbar.classList.remove('bg-white', 'text-black');
+                logo.classList.add('invert', 'brightness-0');
             }
         });
     </script>
