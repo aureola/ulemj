@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churchill - For Elevated Plating</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            cursor: grab;
+            user-select: none;
+        }
+
+        .hero-slider.dragging {
+            cursor: grabbing;
+        }
+
+        .hero-content-wrapper {
+            width: 300%;
+            /* 3 slides */
+        }
+
+        .hero-slide {
+            width: 33.333%;
+            /* 100% / 3 slides */
+        }
+
+        /* Brand Card Hover Effects */
+        .brand-card img {
+            transition: transform 0.5s ease;
+        }
+
+        .brand-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .brand-logo {
+            transition: transform 0.3s ease;
+        }
+
+        .brand-card:hover .brand-logo {
+            transform: translateY(-20px);
+        }
+
+        .brand-description {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .brand-card:hover .brand-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brand-subtitle {
+            transition: opacity 0.3s ease;
+        }
+
+        .brand-card:hover .brand-subtitle {
+            opacity: 1;
+        }
+
+        /* Testimonial Slider */
+        .testimonial-slide {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .testimonial-slide.active {
+            opacity: 1;
+        }
+
+        /* Section Title Lines */
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 150px;
+            height: 1px;
+            background: #999;
+        }
+
+        .section-title::before {
+            right: 110%;
+        }
+
+        .section-title::after {
+            left: 110%;
+        }
+
+        @media (max-width: 768px) {
+
+            .section-title::before,
+            .section-title::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-black/30 text-white transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-12 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <i class="fas fa-bars text-xl cursor-pointer hover:opacity-70"></i>
+                    <div class="text-2xl font-serif font-bold tracking-widest">CHURCHILL</div>
+                    <ul class="hidden lg:flex gap-6 text-sm">
+                        <li><a href="#" class="hover:opacity-70 transition">PRODUCTS</a></li>
+                        <li><a href="#" class="hover:opacity-70 transition">INSPIRATION</a></li>
+                        <li><a href="#" class="hover:opacity-70 transition">HOW TO BUY</a></li>
+                        <li><a href="#" class="hover:opacity-70 transition">INVESTOR RELATIONS</a></li>
+                        <li><a href="#" class="hover:opacity-70 transition">SUSTAINABILITY</a></li>
+                    </ul>
+                </div>
+                <div class="flex items-center gap-6 text-lg">
+                    <i class="fas fa-search cursor-pointer hover:opacity-70 transition"></i>
+                    <i class="far fa-heart cursor-pointer hover:opacity-70 transition"></i>
+                    <i class="far fa-user cursor-pointer hover:opacity-70 transition"></i>
+                    <i class="fas fa-book cursor-pointer hover:opacity-70 transition"></i>
+                    <i class="fas fa-shopping-cart cursor-pointer hover:opacity-70 transition"></i>
+                    <i class="fas fa-globe cursor-pointer hover:opacity-70 transition"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <section class="relative h-screen overflow-hidden">
+        <video autoplay muted loop playsinline class="absolute w-full h-full object-cover">
+            <source src="https://www.churchill1795.com/wp-content/uploads/2024/07/Generic-Web-Banner-5.mp4"
+                type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <!-- Draggable Content Slider -->
+        <div class="hero-slider absolute inset-0 flex items-center justify-center" id="heroSlider">
+            <div class="hero-content-wrapper flex transition-transform duration-500 ease-out" id="heroContentWrapper"
+                style="transform: translateX(0%);">
+                <!-- Slide 1 -->
+                <div class="hero-slide flex-shrink-0 w-full flex items-center justify-center">
+                    <div class="text-center text-white px-4 max-w-4xl">
+                        <h1 class="text-5xl md:text-6xl font-serif mb-4 tracking-widest">FOR ELEVATED PLATING</h1>
+                        <p class="text-lg md:text-xl mb-8">Choice and styles to create your own bespoke food
+                            experiences.</p>
+                        <button
+                            class="px-10 py-3 border-2 border-white hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                            View Our Products
+                        </button>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="hero-slide flex-shrink-0 w-full flex items-center justify-center">
+                    <div class="text-center text-white px-4 max-w-4xl">
+                        <h1 class="text-5xl md:text-6xl font-serif mb-4 tracking-widest">PREMIUM TABLEWARE</h1>
+                        <p class="text-lg md:text-xl mb-8">Crafted with precision for the hospitality industry.</p>
+                        <button
+                            class="px-10 py-3 border-2 border-white hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                            Explore Collections
+                        </button>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="hero-slide flex-shrink-0 w-full flex items-center justify-center">
+                    <div class="text-center text-white px-4 max-w-4xl">
+                        <h1 class="text-5xl md:text-6xl font-serif mb-4 tracking-widest">SUSTAINABLE FUTURE</h1>
+                        <p class="text-lg md:text-xl mb-8">225 years of craftsmanship meets environmental
+                            responsibility.</p>
+                        <button
+                            class="px-10 py-3 border-2 border-white hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-4 z-20">
+            <span class="hero-dot w-3 h-3 rounded-full border-2 border-white cursor-pointer transition-all duration-300"
+                onclick="goToHeroSlide(0)"></span>
+            <span class="hero-dot w-3 h-3 rounded-full border-2 border-white cursor-pointer transition-all duration-300"
+                onclick="goToHeroSlide(1)"></span>
+            <span class="hero-dot w-3 h-3 rounded-full border-2 border-white cursor-pointer transition-all duration-300"
+                onclick="goToHeroSlide(2)"></span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-serif mb-8 relative inline-block section-title">
+                ABOUT CHURCHILL
+            </h2>
+            <p class="text-gray-700 leading-relaxed text-lg">
+                We design and make tableware for the professional, serving hospitality markets globally. With over 225
+                years ceramic manufacturing experience our expertise is committed to making sustainable products that
+                last longer.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 px-6 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 border-2 border-gray-800 rounded-full flex items-center justify-center">
+                        <i class="fas fa-drafting-compass text-3xl"></i>
+                    </div>
+                    <h3 class="text-sm font-bold mb-3 leading-tight">DESIGNED FOR<br>PROFESSIONALS</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">We use performance materials and engineered design
+                        for durability.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 border-2 border-gray-800 rounded-full flex items-center justify-center">
+                        <i class="fas fa-boxes text-3xl"></i>
+                    </div>
+                    <h3 class="text-sm font-bold mb-3 leading-tight">STOCK &<br>SERVICE</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">The products you want when you need them.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 border-2 border-gray-800 rounded-full flex items-center justify-center">
+                        <i class="fas fa-certificate text-3xl"></i>
+                    </div>
+                    <h3 class="text-sm font-bold mb-3 leading-tight">VITRIFICATION<br>& DURABILITY</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">We use processes that make products perform.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="text-center">
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 border-2 border-gray-800 rounded-full flex items-center justify-center">
+                        <i class="fas fa-award text-3xl"></i>
+                    </div>
+                    <h3 class="text-sm font-bold mb-3 leading-tight">QUALITY<br>STANDARDS</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">We do more to ensure consistently high quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto max-w-7xl">
+            <h2
+                class="text-3xl md:text-4xl font-serif mb-12 text-center relative inline-block left-1/2 transform -translate-x-1/2 section-title">
+                OUR BRANDS
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Brand 1 - Alchemy -->
+                <div class="brand-card relative h-96 overflow-hidden cursor-pointer group">
+                    <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=600&q=80" alt="Alchemy"
+                        class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
+                        <div class="brand-logo text-3xl font-serif mb-2">ALCHEMY</div>
+                        <p class="brand-description text-sm px-8 text-center mb-4">Innovative designs for modern dining
+                            experiences</p>
+                        <button
+                            class="px-8 py-2 border-2 border-white text-sm hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+                <!-- Brand 2 - Churchill -->
+                <div class="brand-card relative h-96 overflow-hidden cursor-pointer group">
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Churchill"
+                        class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
+                        <div class="brand-logo text-3xl font-serif mb-1">CHURCHILL</div>
+                        <p class="brand-subtitle text-xs mb-3 opacity-0 group-hover:opacity-100">super vitrified</p>
+                        <p class="brand-description text-sm px-8 text-center mb-4">Premium quality tableware with
+                            exceptional durability</p>
+                        <button
+                            class="px-8 py-2 border-2 border-white text-sm hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+                <!-- Brand 3 - Forge de Laguiole -->
+                <div class="brand-card relative h-96 overflow-hidden cursor-pointer group">
+                    <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600&q=80"
+                        alt="Forge de Laguiole" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
+                        <div class="brand-logo text-2xl font-serif mb-2">FORGE DE LAGUIOLE</div>
+                        <p class="brand-description text-sm px-8 text-center mb-4">Handcrafted cutlery with French
+                            tradition</p>
+                        <button
+                            class="px-8 py-2 border-2 border-white text-sm hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+                <!-- Brand 4 - Dudson -->
+                <div class="brand-card relative h-96 overflow-hidden cursor-pointer group">
+                    <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=600&q=80" alt="Dudson"
+                        class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
+                        <div class="brand-logo text-3xl font-serif mb-2">DUDSON</div>
+                        <p class="brand-description text-sm px-8 text-center mb-4">Contemporary designs for professional
+                            kitchens</p>
+                        <button
+                            class="px-8 py-2 border-2 border-white text-sm hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+                <!-- Brand 5 - Alchemy Ambience -->
+                <div class="brand-card relative h-96 overflow-hidden cursor-pointer group">
+                    <img src="https://images.unsplash.com/photo-1610777377375-c4686b5a1fc6?w=600&q=80"
+                        alt="Alchemy Ambience" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
+                        <div class="brand-logo text-3xl font-serif mb-1">ALCHEMY</div>
+                        <p class="brand-subtitle text-xs mb-3 opacity-0 group-hover:opacity-100">ambience</p>
+                        <p class="brand-description text-sm px-8 text-center mb-4">Creating atmosphere through elegant
+                            tableware</p>
+                        <button
+                            class="px-8 py-2 border-2 border-white text-sm hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                            EXPLORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial/Sustainability Slider Section -->
+    <section class="relative h-[600px] overflow-hidden">
+        <div class="testimonial-slider relative w-full h-full">
+            <div class="testimonial-slide active absolute inset-0 flex items-center">
+                <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920&q=80" alt="City"
+                    class="absolute w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="relative z-10 max-w-4xl mx-auto text-center text-white px-6">
+                    <h2 class="text-3xl md:text-4xl font-serif mb-8 leading-relaxed">From clay to plate we are committed
+                        to a sustainable future.</h2>
+                    <button
+                        class="px-10 py-3 border-2 border-white hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                        LEARN ABOUT OUR SUSTAINABILITY JOURNEY
+                    </button>
+                </div>
+            </div>
+            <div class="testimonial-slide absolute inset-0 flex items-center">
+                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80" alt="Nature"
+                    class="absolute w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="relative z-10 max-w-4xl mx-auto text-center text-white px-6">
+                    <h2 class="text-3xl md:text-4xl font-serif mb-8 leading-relaxed">Quality craftsmanship meets
+                        environmental responsibility.</h2>
+                    <button
+                        class="px-10 py-3 border-2 border-white hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                        DISCOVER OUR PROCESS
+                    </button>
+                </div>
+            </div>
+            <div class="testimonial-slide absolute inset-0 flex items-center">
+                <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=1920&q=80" alt="Ocean"
+                    class="absolute w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60"></div>
+                <div class="relative z-10 max-w-4xl mx-auto text-center text-white px-6">
+                    <h2 class="text-3xl md:text-4xl font-serif mb-8 leading-relaxed">Building a better tomorrow through
+                        innovative design.</h2>
+                    <button
+                        class="px-10 py-3 border-2 border-white hover:bg-white hover:text-black transition-all duration-300 tracking-wider">
+                        EXPLORE OUR VISION
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 z-10">
+            <span
+                class="testimonial-dot w-3 h-3 rounded-full border-2 border-white cursor-pointer transition-all duration-300"
+                onclick="changeTestimonial(0)"></span>
+            <span
+                class="testimonial-dot w-3 h-3 rounded-full border-2 border-white cursor-pointer transition-all duration-300"
+                onclick="changeTestimonial(1)"></span>
+            <span
+                class="testimonial-dot w-3 h-3 rounded-full border-2 border-white cursor-pointer transition-all duration-300"
+                onclick="changeTestimonial(2)"></span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Social Media -->
+            <div class="text-center mb-12">
+                <h3 class="text-sm font-semibold mb-4 tracking-widest">FOLLOW US ON</h3>
+                <div class="flex justify-center gap-6 text-2xl">
+                    <i class="fab fa-facebook cursor-pointer hover:text-gray-400 transition"></i>
+                    <i class="fab fa-instagram cursor-pointer hover:text-gray-400 transition"></i>
+                    <i class="fab fa-linkedin cursor-pointer hover:text-gray-400 transition"></i>
+                </div>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Column 1 -->
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 tracking-wider">FIND OUT MORE</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Brochures</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Showrooms & Events</a></li>
+                        <li><a href="#" class="hover:text-white transition">Decoration & Bespoke</a></li>
+                        <li><a href="#" class="hover:text-white transition">Customised Design</a></li>
+                        <li><a href="#" class="hover:text-white transition">Edge Chip Warranty</a></li>
+                        <li><a href="#" class="hover:text-white transition">Investor Relations</a></li>
+                        <li><a href="#" class="hover:text-white transition">Churchill Home</a></li>
+                    </ul>
+                </div>
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 tracking-wider">OUR WEBSITE</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Website Terms of Use</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Statement</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">CSR Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Modern Slavery Statement</a></li>
+                        <li><a href="#" class="hover:text-white transition">Gender Pay Gap</a></li>
+                        <li><a href="#" class="hover:text-white transition">Sitemap</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 tracking-wider">CONTACT US</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">How To Buy</a></li>
+                        <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-white transition">Subscribe</a></li>
+                        <li><a href="#" class="hover:text-white transition">Sample FAQ</a></li>
+                    </ul>
+                </div>
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-sm font-semibold mb-4 tracking-wider">SIGN UP TODAY</h4>
+                    <p class="text-sm text-gray-400 mb-4 leading-relaxed">Subscribe to our newsletter to be kept up to
+                        date with exciting new product launches, news and inspiration.</p>
+                    <button
+                        class="px-8 py-2 bg-white text-black text-sm hover:bg-gray-200 transition-all tracking-wider">
+                        SUBSCRIBE NOW
+                    </button>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-700 pt-6 text-xs text-gray-500 text-center space-y-1">
+                <p>© 2025 Churchill China (UK) Ltd. All rights reserved.</p>
+                <p>Registered address: No.1 Marlborough Way, Tunstall, Stoke-On-Trent, ST6 5NZ, UK. Company number:
+                    00207513</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Draggable Slider
+        let currentHeroSlide = 0;
+        const heroSlider = document.getElementById('heroSlider');
+        const heroContentWrapper = document.getElementById('heroContentWrapper');
+        const heroDots = document.querySelectorAll('.hero-dot');
+        const totalHeroSlides = 3;
+
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID = 0;
+
+        // Touch Events
+        heroSlider.addEventListener('touchstart', touchStart);
+        heroSlider.addEventListener('touchend', touchEnd);
+        heroSlider.addEventListener('touchmove', touchMove);
+
+        // Mouse Events
+        heroSlider.addEventListener('mousedown', touchStart);
+        heroSlider.addEventListener('mouseup', touchEnd);
+        heroSlider.addEventListener('mouseleave', touchEnd);
+        heroSlider.addEventListener('mousemove', touchMove);
+
+        function touchStart(event) {
+            isDragging = true;
+            startPos = getPositionX(event);
+            animationID = requestAnimationFrame(animation);
+            heroSlider.classList.add('dragging');
+        }
+
+        function touchEnd() {
+            isDragging = false;
+            cancelAnimationFrame(animationID);
+            heroSlider.classList.remove('dragging');
+
+            const movedBy = currentTranslate - prevTranslate;
+
+            if (movedBy < -100 && currentHeroSlide < totalHeroSlides - 1) {
+                currentHeroSlide += 1;
+            }
+
+            if (movedBy > 100 && currentHeroSlide > 0) {
+                currentHeroSlide -= 1;
+            }
+
+            setPositionByIndex();
+            updateHeroDots();
+        }
+
+        function touchMove(event) {
+            if (isDragging) {
+                const currentPosition = getPositionX(event);
+                currentTranslate = prevTranslate + currentPosition - startPos;
+            }
+        }
+
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        function animation() {
+            setSliderPosition();
+            if (isDragging) requestAnimationFrame(animation);
+        }
+
+        function setSliderPosition() {
+            heroContentWrapper.style.transform = `translateX(${currentTranslate}px)`;
+        }
+
+        function setPositionByIndex() {
+            currentTranslate = currentHeroSlide * -window.innerWidth;
+            prevTranslate = currentTranslate;
+            setSliderPosition();
+        }
+
+        function goToHeroSlide(index) {
+            currentHeroSlide = index;
+            setPositionByIndex();
+            updateHeroDots();
+        }
+
+        function updateHeroDots() {
+            heroDots.forEach((dot, index) => {
+                if (index === currentHeroSlide) {
+                    dot.classList.add('bg-white');
+                } else {
+                    dot.classList.remove('bg-white');
+                }
+            });
+        }
+
+        // Initialize first dot
+        updateHeroDots();
+
+        // Auto slide every 7 seconds
+        setInterval(() => {
+            currentHeroSlide = (currentHeroSlide + 1) % totalHeroSlides;
+            setPositionByIndex();
+            updateHeroDots();
+        }, 7000);
+
+        // Testimonial Slider
+        let currentTestimonial = 0;
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+
+        function changeTestimonial(index) {
+            testimonialSlides[currentTestimonial].classList.remove('active');
+            testimonialDots[currentTestimonial].classList.remove('bg-white');
+            currentTestimonial = index;
+            testimonialSlides[currentTestimonial].classList.add('active');
+            testimonialDots[currentTestimonial].classList.add('bg-white');
+        }
+
+        function autoTestimonial() {
+            changeTestimonial((currentTestimonial + 1) % testimonialSlides.length);
+        }
+
+        // Initialize first testimonial dot
+        testimonialDots[0].classList.add('bg-white');
+        setInterval(autoTestimonial, 6000);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-black/90');
+                navbar.classList.remove('bg-black/30');
+            } else {
+                navbar.classList.add('bg-black/30');
+                navbar.classList.remove('bg-black/90');
+            }
+        });
+    </script>
+</body>
+
+</html>
